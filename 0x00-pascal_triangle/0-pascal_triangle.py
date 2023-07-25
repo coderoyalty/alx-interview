@@ -1,12 +1,12 @@
 #!/usr/bin/python3
-'''
+"""
 pascal triangle function
-'''
+"""
 
 
 def pascal_triangle(num: int):
     """
-    this function will compute the binomial coefficient of pascal triangle. 
+    this function will compute the binomial coefficient of pascal triangle.
     """
     if num <= 0:
         return []
