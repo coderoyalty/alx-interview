@@ -80,7 +80,7 @@ def visit_box(box_id, visited_boxes, boxes):
     continue
 ```
 
-To use the key from a box, certain conditions are required. the key of the box must be less than the number of boxes in the collection, and the box in reference must be unexplored. We can pay a visit to an explored box as the keys provided is already use to visit other boxes. This is to prevent circular exploration of the collection. If this criterias are met, we can visit other boxes referenced by the keys in the latest visited box.
+To use the key from a box, certain conditions are required. the key of the box must be less than the number of boxes in the collection, and the box in reference must be unexplored. We can pay a visit to an explored box as the keys provided is already use to visit other boxes. This is to prevent circular exploration of the collection. If this criteria are met, we can visit other boxes referenced by the keys in the latest visited box.
 
 Remember the `visited_boxes` keeps record of all visited box throughout the journey and a visited box is an opened box because there was a key provided to open it. Any visited box is check this way `visited_boxes[box_id] = True`. So, by the end of the exploration we just need to check if the whole boxes are marked as visited.
 
@@ -101,7 +101,7 @@ Now, that's how to solve the locked-boxes problem recursively. However, be warne
 
 Another solution is to go through the boxes and keep record of all the keys you've seen in the collection of boxes. If the key matches the current box then don't add the key to the collection.
 
-After the whole iteration, you must make sure the record you kept does not contain duplicates. This can be done by convert the records to a set, which will scrape out any duplicates in the record or by checking for duplicates before adding a key to the record. After this, the number of keys in the record you've kept must match the number of boxes provided.
+After the whole iteration, you must make sure the record you kept does not contain duplicates. This can be done by converting the records to a set, which will scrape out any duplicates in the record or by checking for duplicates before adding a key to the record. After this, the number of keys in the record you've kept must match the number of boxes provided.
 
 Since the key is a reference to a box. Each key in the record represents a box that can be opened, which is the box in reference to the key. When the number of keys in the record is equal to the number of boxes provided (remember duplicates have been scraped-out), then it means the whole boxes can be unlocked. This solves the problem without an error, unlike the recursive solution.
 
