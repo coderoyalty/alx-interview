@@ -24,8 +24,17 @@ def canUnlockAll(boxes):
     """
     function to solve the lockboxes problem.
     """
-    n = len(boxes)
-    visited_boxes = [False] * n
-    visit_box(0, visited_boxes, boxes)
-    """the all function returns true if all its values are true"""
-    return all(visited_boxes)
+    unlocked_keys = [0]
+    for id, box in enumerate(boxes):
+        if len(box) == 0:
+            continue
+        for key in box:
+            """
+            ensure the key has a box and the box has not been visited
+            """
+            if key != id and key < len(boxes) and key not in unlocked_keys:
+                unlocked_keys.append(key)
+    if len(unlocked_keys) == len(boxes):
+        return True
+    else:
+        return False
