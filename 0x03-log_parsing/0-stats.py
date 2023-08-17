@@ -44,4 +44,4 @@ try:
 
 except KeyboardInterrupt:
     print_stats(status_codes, total_size)
-    pass
+    raise
