@@ -26,6 +26,7 @@ try:
 
         if count == 10:
             print_stats(status_codes, total_size)
+            count = 0
 
         count += 1
 
