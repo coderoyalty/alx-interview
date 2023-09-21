@@ -20,19 +20,25 @@ def makeChange(coins, total):
     """
     return fewest number of coin needed to meet `total`
     """
+    remain = total
+    n = len(coins)
+
     if total <= 0:
         return 0
-    cache = {}
 
-    cache[0] = 0
-    for i in range(1, total + 1):
-        for coin in coins:
-            sub = i - coin
-            if sub < 0:
-                continue
-            if cache.get(sub) is None:
-                return -1
-            else:
-                cache[i] = min_ignore_none(cache.get(i), cache.get(sub) + 1)
+    sorted_coins = sorted(coins, reverse=True)
+    index = 0
+    count = 0
 
-    return cache[total]
+    while remain > 0:
+        if index >= n:
+            return -1
+        estimate = remain - sorted_coins[index]
+
+        if estimate >= 0:
+            remain -= sorted_coins[index]
+            count += 1
+        else:
+            index += 1
+
+    return count
