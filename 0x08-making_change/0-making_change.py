@@ -4,18 +4,6 @@ module contains function `makeChange`
 """
 
 
-def min_ignore_none(a, b):
-    """
-    an helper function that finds the min between `a` and `b`, except it
-    returns b if a is None and vice versa
-    """
-    if a is None:
-        return b
-    if b is None:
-        return a
-    return min(a, b)
-
-
 def makeChange(coins, total):
     """
     return fewest number of coin needed to meet `total`
@@ -26,6 +14,9 @@ def makeChange(coins, total):
     if total <= 0:
         return 0
 
+    # sort coins into descending order
+    # this way, the largest coin can be consumed first,
+    # which minimizes for example having 2 twices instead 4.
     sorted_coins = sorted(coins, reverse=True)
     index = 0
     count = 0
@@ -35,9 +26,12 @@ def makeChange(coins, total):
             return -1
         estimate = remain - sorted_coins[index]
 
+        # remaining coin must be >= 0
         if estimate >= 0:
             remain -= sorted_coins[index]
             count += 1
+        # if the possibility of becoming < 0 exists
+        # increase your index
         else:
             index += 1
 
